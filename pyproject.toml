@@ -8,3 +8,4 @@ authors = [{name = "Pascal Lebersorger"}]
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
+dependencies = ["entsoe-py==0.5.9"]
