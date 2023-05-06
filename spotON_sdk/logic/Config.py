@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-
-from ..constants.styles import MD
+from typing import List
 
 class Switchtypes():
     switch = "Switch"
@@ -26,7 +25,7 @@ class Config():
     switchtype :Switchtypes
     nr_of_Hours_On :int
     uninterrupted :bool
-    timeframe :list[list]
+    timeframe :List[List[int]] 
     periodType : str = ""
     bestHour :str = ""
     week: int = 100
@@ -82,18 +81,3 @@ class Config():
 
         return possible_Hours
 
-def return_Setup_Explanation(config:Config):
-    start,end = config.timeframe[0][0],config.timeframe[0][1]
-    setup_explanation_String = MD.alinCenterStart
-    setup_explanation_String += f"Your Load will be switched <mark>ON for the {config.nr_of_Hours_On} cheapest Hours "
-    if config.periodType.startswith(PeriodTypes.wholeDay):
-        setup_explanation_String += f"during a 24h Period. "
-    else:
-        setup_explanation_String += f"between {start} and {end}</mark>"
-    if config.uninterrupted:
-        setup_explanation_String += f"</mark>Predictions based on Arregated Data says the <mark>cheapest Hour To Start a your continous {config.nr_of_Hours_On}h Cycle in week {config.week} is {config.bestHour}:00</mark> each day"
-    
-    setup_explanation_String += config.timeFrameValidation.return_Validation_Result()
-    setup_explanation_String += MD.alinCenterStart
-
-    return setup_explanation_String
