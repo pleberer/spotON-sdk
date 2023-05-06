@@ -10,4 +10,4 @@ the data returned by the API.
 from .logic.Config import *
 
 __version__ = "0.0.1"
-__all__ = ["Config"]
+__all__ = [name for name in dir() if not name.startswith('_')]
